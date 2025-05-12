@@ -1,13 +1,14 @@
 package br.com.thomasgreg.clienteapi.controller;
 
+import br.com.thomasgreg.clienteapi.dto.LogradouroDTO;
 import br.com.thomasgreg.clienteapi.entity.Logradouro;
 import br.com.thomasgreg.clienteapi.service.LogradouroService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/logradouros")
@@ -17,26 +18,25 @@ public class LogradouroController {
     private LogradouroService logradouroService;
 
     @GetMapping
-    public List<Logradouro> listarTodos(){
-        return logradouroService.listarTodos();
+    public List<LogradouroDTO> listarTodos(){
+        return logradouroService.listarTodos().stream().map(this::toDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Logradouro> buscarPorId(@PathVariable Long id){
-        Logradouro logradouro = logradouroService.buscarPorId(id);
-        return ResponseEntity.ok(logradouro);
+    public ResponseEntity<LogradouroDTO> buscarPorId(@PathVariable Long id){
+        return ResponseEntity.ok(toDTO(logradouroService.buscarPorId(id)));
     }
 
     @PostMapping
-    public ResponseEntity<Logradouro> criar(@RequestBody Logradouro logradouro){
-        Logradouro novoLogradouro = logradouroService.criarLogradouro(logradouro);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoLogradouro);
+    public ResponseEntity<LogradouroDTO> criar(@RequestBody Logradouro logradouro){
+        Logradouro novo = logradouroService.criarLogradouro(logradouro);
+        return ResponseEntity.status(HttpStatus.CREATED).body(toDTO(novo));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Logradouro> atualizar(@PathVariable Long id, @RequestBody Logradouro logradouro){
-        Logradouro logradouroAtualizado = logradouroService.atualizar(id, logradouro);
-        return ResponseEntity.ok(logradouroAtualizado);
+    public ResponseEntity<LogradouroDTO> atualizar(@PathVariable Long id, @RequestBody Logradouro logradouro){
+        Logradouro atualizado = logradouroService.atualizar(id, logradouro);
+        return ResponseEntity.ok(toDTO(atualizado));
     }
 
     @DeleteMapping("/{id}")
@@ -45,5 +45,10 @@ public class LogradouroController {
         return ResponseEntity.noContent().build();
     }
 
-
+    private LogradouroDTO toDTO(Logradouro logradouro) {
+        LogradouroDTO dto = new LogradouroDTO();
+        dto.setId(logradouro.getId());
+        dto.setEndereco(logradouro.getEndereco());
+        return dto;
+    }
 }

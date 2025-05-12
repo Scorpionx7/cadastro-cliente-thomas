@@ -22,6 +22,12 @@ public class Logradouro {
     public Logradouro() {
     }
 
+    public Logradouro(Long id, String endereco, Cliente cliente) {
+        this.id = id;
+        this.endereco = endereco;
+        this.cliente = cliente;
+    }
+
     public Logradouro(String endereco) {
         this.endereco = endereco;
     }
