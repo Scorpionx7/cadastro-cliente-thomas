@@ -146,6 +146,18 @@ Execute no SSMS antes de iniciar a API.
 
 ---
 
+## 📱 Front-End
+
+O front-end da aplicação é desenvolvido utilizando **JSF** e **PrimeFaces** e foi pensado para aproveitar ao máximo a **API RESTful** deste projeto. Essa parte inclui páginas para:
+
+- Login com integração via JWT
+- Cadastro de cliente com upload de logotipo
+- Listagem e edição de clientes
+
+> ⚠️ **Atenção:** A implementação do front-end está em andamento. Você pode acompanhar o desenvolvimento pelo repositório:  
+[github.com/Scorpionx7/cliente-web](https://github.com/Scorpionx7/cliente-web)
+
+
 ## ✍️ Autora
 
 Desenvolvido por **Esther**  
