@@ -13,7 +13,7 @@ public class Logradouro {
 
     private String endereco;
 
-    // Relação Muitos para Um: cada logradouro pertence a um cliente.
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     @JsonBackReference

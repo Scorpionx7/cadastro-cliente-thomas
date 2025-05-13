@@ -18,11 +18,10 @@ public class Cliente {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Lob //pedir pro chat explicar // usar o MultipartFile.
+    @Lob
     private byte[] logotipo;
 
-    // Um cliente pode ter vários logradouros.
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true) // pedir pro chat explicar
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Logradouro> logradouros = new ArrayList<>();
 
@@ -35,7 +34,7 @@ public class Cliente {
         this.logotipo = logotipo;
     }
 
-    //metodos aux
+
     public void addLogradouro(Logradouro logradouro){
         this.logradouros.add(logradouro);
         logradouro.setCliente(this);
