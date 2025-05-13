@@ -7,7 +7,7 @@ Este projeto é uma API RESTful desenvolvida em Java com Spring Boot para gerenc
 
 ## 📐 Arquitetura da Solução
 
-![Arquitetura da Solução](C:\Users\Esther\Downloads\arquitetura-solucao.png)
+![Arquitetura da Solução](https://github.com/user-attachments/assets/a73f6b53-0a71-407b-b9bd-b55b544527b5)
 
 ---
 
